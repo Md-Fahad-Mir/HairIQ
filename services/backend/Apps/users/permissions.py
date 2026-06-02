@@ -14,14 +14,26 @@ class IsClient(BasePermission):
 
 
 class IsBarber(BasePermission):
-    """Allow access only to barber/hairdresser users."""
-    message = "Only barbers/hairdressers can access this resource."
+    """Allow access only to barber/hair stylist users."""
+    message = "Only barbers/hair stylists can access this resource."
 
     def has_permission(self, request, view):
         return (
             request.user
             and request.user.is_authenticated
             and request.user.role == 'barber'
+        )
+
+
+class IsSalon(BasePermission):
+    """Allow access only to salon users."""
+    message = "Only salons can access this resource."
+
+    def has_permission(self, request, view):
+        return (
+            request.user
+            and request.user.is_authenticated
+            and request.user.role == 'salon'
         )
 
 

@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.Serializer):
     full_name = serializers.CharField(max_length=255)
     password = serializers.CharField(write_only=True, min_length=8)
     confirm_password = serializers.CharField(write_only=True, min_length=8)
-    role = serializers.ChoiceField(choices=['client', 'barber'], default='client')
+    role = serializers.ChoiceField(choices=['client', 'barber', 'salon'], default='client')
 
     def validate_email(self, value):
         email = value.lower().strip()

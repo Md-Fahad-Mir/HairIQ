@@ -24,10 +24,16 @@ class UserModelTests(TestCase):
     def test_user_roles(self):
         client = User.objects.create_user(email='c@t.com', password='p', role='client')
         barber = User.objects.create_user(email='b@t.com', password='p', role='barber')
+        salon = User.objects.create_user(email='s_role@t.com', password='p', role='salon')
         self.assertTrue(client.is_client)
         self.assertFalse(client.is_barber)
+        self.assertFalse(client.is_salon)
         self.assertTrue(barber.is_barber)
         self.assertFalse(barber.is_client)
+        self.assertFalse(barber.is_salon)
+        self.assertTrue(salon.is_salon)
+        self.assertFalse(salon.is_client)
+        self.assertFalse(salon.is_barber)
 
     def test_subscription_check(self):
         user = User.objects.create_user(email='s@t.com', password='p')

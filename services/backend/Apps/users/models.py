@@ -47,7 +47,8 @@ class CustomUserModel(AbstractBaseUser, PermissionsMixin):
 
     ROLE_CHOICES = [
         ('client', 'Client'),
-        ('barber', 'Barber/Hairdresser'),
+        ('barber', 'Barber/Hair Stylist'),
+        ('salon', 'Hair Salon'),
         ('admin', 'Admin'),
     ]
 
@@ -93,6 +94,10 @@ class CustomUserModel(AbstractBaseUser, PermissionsMixin):
     @property
     def is_barber(self):
         return self.role == 'barber'
+
+    @property
+    def is_salon(self):
+        return self.role == 'salon'
 
     @property
     def is_admin_user(self):
